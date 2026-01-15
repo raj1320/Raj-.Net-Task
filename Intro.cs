@@ -13,5 +13,10 @@ public class Intro
 		Console.WriteLine("Machine Name is : " + MachineName);
         Console.Write("===========================\n");
 
+
+		Console.WriteLine("Enter your good name: ");
+		string name = Console.ReadLine();
+		Console.WriteLine("Your Name is : " + name);
+		Console.WriteLine("============================");
     }
 }
