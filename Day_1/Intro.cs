@@ -15,8 +15,8 @@ public class Intro
 
 
 		Console.WriteLine("Enter your good name: ");
-		string name = Console.ReadLine();
-		Console.WriteLine("Your Name is : " + name);
+		string? name = Console.ReadLine();
+		Console.WriteLine("Your Name is : " + name ?? "Default User");
 		Console.WriteLine("============================");
     }
 }
