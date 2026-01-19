@@ -38,9 +38,11 @@ public class ReadOnly_constant_class
 		const int Base = 10;
 
 		ReadOnly_constant_class obj = new ReadOnly_constant_class("ranaroshan1232005@gmail.com","Rana Raj",null,Base);
-		//obj.Id = 12;
+		//obj.Id = 12; //throw run time exception..
+		//Console.WriteLine(obj.Id);
 
-		//Const int new_Id = 20;
+
+		//Const int new_Id = 20;   throw compile time exception..
 		//new_Id =  30;
 
 		display(obj);
