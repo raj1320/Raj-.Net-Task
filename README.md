@@ -1,1 +1,1 @@
-Day1 Assignments Link : https://1drv.ms/w/c/fced7b4931d7ec25/IQAsbv-vBicpRo6LAy2idkIDAdyAtfBEK9FS0uEctLL5pTc?e=KZjEzW
+Day1 Assignments Link : https://docs.google.com/document/d/1lotGc9apdejVoghgAnlOrRTUwpSgAACMEPWn8bZMRcw/edit?usp=sharing
