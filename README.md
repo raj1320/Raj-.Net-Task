@@ -8,3 +8,5 @@ https://docs.google.com/document/d/1IOVgLP_1hOTPRxmknNo-PQ8CZJ1T3x_YIsohexUG0Vw/
 Day4 Assignments Docs Link : https://docs.google.com/document/d/1vXzfvqgUhE_Olnpxqxy6IvmPGEG_fsexw3CRPD_xq6Y/edit?usp=sharing
 
 Day5 Assignments Docs Link : https://docs.google.com/document/d/1IDc1e9nfC47PT_X640G_aOuGUPRt7JfC7yOmzdB0tyg/edit?usp=sharing
+
+Day6 Assignments Docs Link : https://docs.google.com/document/d/1QKmaZronhVeCPD5h5TSf9NX86xem8dcrjcGsgkGld8Y/edit?usp=sharing
