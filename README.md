@@ -10,3 +10,5 @@ Day4 Assignments Docs Link : https://docs.google.com/document/d/1vXzfvqgUhE_Olnp
 Day5 Assignments Docs Link : https://docs.google.com/document/d/1IDc1e9nfC47PT_X640G_aOuGUPRt7JfC7yOmzdB0tyg/edit?usp=sharing
 
 Day6 Assignments Docs Link : https://docs.google.com/document/d/1QKmaZronhVeCPD5h5TSf9NX86xem8dcrjcGsgkGld8Y/edit?usp=sharing
+
+Day7 Assignments Docs Link : https://docs.google.com/document/d/1iZSv0BL_X6GveisuBR2adF6baSsatdw1gyq6iXZ1hzA/edit?usp=sharing
