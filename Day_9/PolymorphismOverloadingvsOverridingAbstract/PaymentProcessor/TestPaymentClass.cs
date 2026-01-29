@@ -9,13 +9,13 @@ namespace PolymorphismOverloadingvsOverridingAbstract.PaymentProcessor
         static void Main()
         {
 
-            // Observing Behaviour of Method overloading , function call taken place at CompileTime
+            // Observing Behaviour of Method overloading , function cheking taken place at CompileTime
             PaymentProcessorClass ParentPayment = new PaymentProcessorClass();
 
             ParentPayment.ProcessPayment(121212, 1111, 12000);
             ParentPayment.ProcessPayment("Union Cambay", "IFC0dnjnj" ,110000000011,12000);
 
-            // Object Creation of Derived class and cheking behaviour of Method overriding , function call taken place at RunTime
+            // Object Creation of Derived class and cheking behaviour of Method overriding , function cheking taken place at RunTime
             PaymentProcessorClass Obj = new UPIPaymentProcessorClass();
             PaymentProcessorClass Obj2 = new CreditCardPaymentProcessor();
 
