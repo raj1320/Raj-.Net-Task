@@ -1,5 +1,5 @@
 ﻿///<summary>
-/// Here i define EmployeeClass with 5 private fields 
+/// Here i define EmployeeClass with 4 private fields 
 /// And one static method Called AddEmployeeToList which adds dummy data to list and returns Employee List.
 /// </summary>
 

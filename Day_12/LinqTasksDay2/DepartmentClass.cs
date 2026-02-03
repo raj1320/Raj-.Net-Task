@@ -1,4 +1,9 @@
 ﻿
+///<summary>
+/// Here i define DepartmentClass with 2 private fields 
+/// And one static method Called AddDepartmentToList which adds dummy data to list and returns DepartmentList List.
+/// </summary>
+
 using System;
 using System.Collections.Generic;
 using System.Text;
