@@ -219,6 +219,8 @@ namespace linqTasksDay3
 
             #region TASK6
 
+            Console.WriteLine("---------------------------------------------------------->Task6<--------------------------------------------------\n");
+
             var Result6 = ListOfEmplooyees.AsQueryable().Select(E => new { EmployeeName = E.Name,E.DepartmentID }).ToList();
 
             foreach(var item in Result6)
