@@ -12,3 +12,6 @@ Day5 Assignments Docs Link : https://docs.google.com/document/d/1IDc1e9nfC47PT_X
 Day6 Assignments Docs Link : https://docs.google.com/document/d/1QKmaZronhVeCPD5h5TSf9NX86xem8dcrjcGsgkGld8Y/edit?usp=sharing
 
 Day7 Assignments Docs Link : https://docs.google.com/document/d/1iZSv0BL_X6GveisuBR2adF6baSsatdw1gyq6iXZ1hzA/edit?usp=sharing
+
+EFCORE Day1 Assginmets Docs Link :
+https://docs.google.com/document/d/1CRftRD63UcA0DUaWas6FnKhEJxbutbUXpieQ60Xv34Q/edit?usp=sharing
