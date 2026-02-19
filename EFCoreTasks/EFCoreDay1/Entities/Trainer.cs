@@ -6,7 +6,7 @@ namespace EFWithRelationships.Data
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public int ExperienceYears { get; set; }
-        public List<Batch> Batches { get; set; } = new List<Batch>();
+        public virtual List<Batch> Batches { get; set; } = new List<Batch>();
 
     }
 }

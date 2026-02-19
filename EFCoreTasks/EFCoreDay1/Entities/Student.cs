@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreDay1.Entities
 {
-    public class Student
+    public class Student 
     {
         [Key]
         public int Id { get; set; }
@@ -16,6 +16,11 @@ namespace EFCoreDay1.Entities
         public string Email { get; set; } = string.Empty;        
         public DateTime Created { get; set; }
 
-        public List<Course> Courses { get; set; } = new List<Course>();
+        public virtual List<Course> Courses { get; set; } = new List<Course>();
+
+        
+        
     }
 }
+
+

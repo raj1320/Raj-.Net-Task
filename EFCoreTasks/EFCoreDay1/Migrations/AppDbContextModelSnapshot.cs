@@ -37,6 +37,23 @@ namespace EFCoreDay1.Migrations
                     b.ToTable("CourseStudent");
                 });
 
+            modelBuilder.Entity("EFCoreDay1.Entities.Clubs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clubs");
+                });
+
             modelBuilder.Entity("EFCoreDay1.Entities.Course", b =>
                 {
                     b.Property<int>("Id")

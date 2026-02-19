@@ -9,7 +9,7 @@ namespace EFWithRelationships.Data
         public int CourseId { get; set; }
         public int TrainerId { get; set; }
 
-        public Trainer Trainer { get; set; } = null!;
-        public Course Course { get; set; } = null!;
+        public virtual Trainer Trainer { get; set; } = null!;
+        public virtual Course Course { get; set; } = null!;
     }
 }

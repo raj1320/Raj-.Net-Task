@@ -18,8 +18,8 @@ namespace EFCoreDay1.Entities
         
         public int DurationInMonths { get; set; } 
 
-        public List<Batch> Batches { get; set; } = new List<Batch>();
+        public virtual List<Batch> Batches { get; set; } = new List<Batch>();
 
-        public List<Student> Students { get; set; } = new List<Student>();
+        public virtual List<Student> Students { get; set; } = new List<Student>();
     }
 }
