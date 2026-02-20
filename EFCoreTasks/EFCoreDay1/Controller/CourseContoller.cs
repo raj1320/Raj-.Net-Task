@@ -131,7 +131,7 @@ namespace EFCoreDay1.Controller
             }
         }
 
-        public static void ChooseAndSeeTheCourseStudentListByExplisitCastingController()
+        public static void ChooseAndSeeTheCourseStudentListByExplicitLoadingController()
         {
             using (AppDbContext appDbContext = new AppDbContext())
             {

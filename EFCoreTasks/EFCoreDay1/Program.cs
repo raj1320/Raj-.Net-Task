@@ -35,7 +35,7 @@ while (value != 19)
     Console.WriteLine("Enter 15 for Delete Trainer");
     Console.WriteLine("Enter 16 for Add Club and Check AsNoTracking behaviour");
     Console.WriteLine("Enter 17 for Show Trainer with Lazy loading..");
-    Console.WriteLine("Enter 18 for Show Courses via Explisit Casting");
+    Console.WriteLine("Enter 18 for Show Courses via Explicit Loading");
     Console.WriteLine("Enter 19 for Exite");
     ForMemoryAllocation_Validation(ref value, "Enter choice");
     switch (value)
@@ -131,7 +131,7 @@ while (value != 19)
             }
         case 18:
             {
-                CourseContoller.ChooseAndSeeTheCourseStudentListByExplisitCastingController();
+                CourseContoller.ChooseAndSeeTheCourseStudentListByExplicitLoadingController();
                 break;
             }
         case 19:

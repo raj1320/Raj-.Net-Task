@@ -87,7 +87,7 @@ namespace EFCoreDay1.Services
                 Console.WriteLine($" Title = {item.Title} Fees = {item.Fees}  Duration In Months ={item.DurationInMonths}\n");
                 if (item.Id == Id)
                 {
-                    appDbContext.Entry(item).Collection(x => x.Students);
+                    appDbContext.Entry(item).Collection(x => x.Students).Load();
                     Console.WriteLine($" Here students are printed for this course only, yet you choose this course\n {item.Title} students are :- ");
                     Console.WriteLine("=========================");
                     foreach (var student in item.Students)
