@@ -11,9 +11,13 @@ namespace CTMS.Repository.Entities
         public Double Salary {  get; set; }
         public string Designation { get; set; } = string.Empty;
         public bool IsTrainer { get; set; }=false;
-        public int DepartmentId { get; set; }
+        public bool IsEnrolled { get; set; }=false;
         public int YearsOfExperties { get; set; }
+        public int DepartmentId { get; set; }
 
         public Department Department { get; set; } = null!;
+
+        public TrainerEmployee TrainerEmployee { get; set; }=null!;
+        public EnrolledEmployee EnrolledEmployee { get; set; }=null!;
     }
 }

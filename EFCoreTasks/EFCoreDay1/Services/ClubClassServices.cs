@@ -41,6 +41,7 @@ namespace EFCoreDay1.Services
 
             appDbContext.Entry(club).State = EntityState.Detached;
 
+
             Console.WriteLine("No tracked entity for Club,  before attach Entity state : " + appDbContext.Entry(club).State);
             club.Name = "newName";
             Console.WriteLine("No tracked entity for Club,  before attach and modified Entity state : " + appDbContext.Entry(club).State);
