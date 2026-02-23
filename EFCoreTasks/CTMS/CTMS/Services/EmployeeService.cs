@@ -6,12 +6,21 @@ namespace CTMS.Services
 {
     public class EmployeeService
     {
-       public static Employee  FetchEmloyeeFromUserService()
+       public static Employee?  FetchEmloyeeFromUserService(int id,List<string> EmailList)
         {
             Console.WriteLine("Enter The Name of the Employee:");
             string Name = Console.ReadLine() ?? "Test";
             Console.WriteLine("Enter The Email of the Employee:");
             string Email = Console.ReadLine() ?? "Test";
+            foreach (string email in EmailList) 
+            {
+                if (email == Email) 
+                {
+                    Console.WriteLine("Email already Exist..");
+                    Console.WriteLine("Try again");
+                    return null;
+                }
+            }
             Console.WriteLine("Enter The Phone Number of the Employee:");
             string Phone = Console.ReadLine() ?? "Test";
             Console.WriteLine("Enter The Address of the Employee:");
@@ -32,7 +41,8 @@ namespace CTMS.Services
             employee.Address = Address;
             employee.Designation = Designation;
             employee.Salary = Salary;
-
+            employee.DepartmentId = id;
+            employee.YearsOfExperties = Experience;
             return employee;
         }
 
@@ -40,7 +50,7 @@ namespace CTMS.Services
         {
             foreach (Employee emp in listOfEmployee) 
             {
-                Console.WriteLine($"Name: {emp.Name} , Email: {emp.Email} , Phone Number: {emp.PhoneNumber} , Address : {emp.Address} , Designation: {emp.Designation} , Salary : {emp.Salary} , Department : {emp.Department.Name} , YearOfExperience : {emp.YearsOfExperties}");
+                Console.WriteLine($"Id : {emp.Id},\nName: {emp.Name}, Email: {emp.Email},\nPhone Number: {emp.PhoneNumber} , Address : {emp.Address} ,\nDesignation: {emp.Designation} , Salary : {emp.Salary} ,\nDepartment : {emp.Department.Name} , YearOfExperience : {emp.YearsOfExperties}\n");
             }
         }
 
@@ -56,33 +66,21 @@ namespace CTMS.Services
         public static int FetchEmployeeId(List<Employee> listOfEmployee)
         {
             int Id = 0;
-            int flag = 0;
-            while (flag != 1)
-            {
+            
                 ShowEmployeeService(listOfEmployee);
-                string? Input;
-                Console.WriteLine("Choose the desired index:");
-                Input = Console.ReadLine() ?? "0";
 
-                int idx = int.Parse(Input);
-                int size = listOfEmployee.Count();
-                foreach (var employee in listOfEmployee)
+                GeneralService.FetchUserInputGeneric(ref Id, "Choose the desired index:");
+
+                foreach(Employee emp in listOfEmployee)
                 {
-
-                    if (idx > 0 && idx <= size && listOfEmployee[idx] != null)
+                    if (emp.Id == Id)
                     {
-                        Id = employee.Id;
-                        flag = 1;
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("\nEnter Valid Input...");
+                        return Id;
                     }
                 }
-            }
-            return Id;
 
+            return 0;
+           
         }
         
     }

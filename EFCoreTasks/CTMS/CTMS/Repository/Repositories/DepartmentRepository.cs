@@ -40,7 +40,7 @@ namespace CTMS.Repository.Repositories
             {
                 _Context.Departments.Remove(department);
                 _Context.SaveChanges();
-                Console.WriteLine("Employee is Remove Successfully");
+                Console.WriteLine("Department is Remove Successfully");
             }
 
             else Console.WriteLine("Record Not Found...");

@@ -12,8 +12,16 @@ namespace CTMS.Controller
             using (AppDbContext appDbContext = new AppDbContext())
             {
                 EmployeeRepository employeeRepository = new EmployeeRepository(appDbContext);
-                var employee = EmployeeService.FetchEmloyeeFromUserService();
-                employeeRepository.AddEmployee(employee);
+                DepartmentRepository departmentRepository = new DepartmentRepository(appDbContext);
+
+                int id =DepartmentService.FetchInputDepartmentIdService(departmentRepository.GetAllDepartment());
+                departmentRepository.GetDepartment(id);
+                var EmailList = appDbContext.Employees.Select(e=> e.Email).ToList();
+                var employee = EmployeeService.FetchEmloyeeFromUserService(id,EmailList);
+                if (employee != null)
+                {
+                    employeeRepository.AddEmployee(employee);
+                }
             };
 
         }
@@ -44,6 +52,7 @@ namespace CTMS.Controller
             {
                 EmployeeRepository employeeRepository= new EmployeeRepository(appDbContext);
                 int EmployeeId=EmployeeService.FetchEmployeeId(employeeRepository.GetAllEmployee());
+
                 employeeRepository.DeleteEmployee(EmployeeId);
             };
           

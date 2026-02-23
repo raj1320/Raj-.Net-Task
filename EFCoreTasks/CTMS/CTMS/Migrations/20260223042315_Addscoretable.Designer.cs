@@ -4,6 +4,7 @@ using CTMS.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CTMS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260223042315_Addscoretable")]
+    partial class Addscoretable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,48 +54,6 @@ namespace CTMS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateOfEstablishment = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Produce Valuable Software",
-                            Location = "3rd-floor",
-                            Name = "IT"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateOfEstablishment = new DateTime(2021, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Produce Valuable Software",
-                            Location = "3rd-floor",
-                            Name = "Salse"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DateOfEstablishment = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Produce Valuable Software",
-                            Location = "3rd-floor",
-                            Name = "Marketing"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DateOfEstablishment = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Produce Valuable Software",
-                            Location = "3rd-floor",
-                            Name = "QA"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DateOfEstablishment = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Produce Valuable Software",
-                            Location = "3rd-floor",
-                            Name = "Finance"
-                        });
                 });
 
             modelBuilder.Entity("CTMS.Repository.Entities.Employee", b =>
@@ -155,106 +116,6 @@ namespace CTMS.Migrations
                         .IsUnique();
 
                     b.ToTable("Employees", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "khambhat",
-                            DepartmentId = 1,
-                            Designation = "Software Developer",
-                            Email = "raj123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Raj Rana",
-                            PhoneNumber = "7046192318",
-                            Salary = 40000m,
-                            YearsOfExperties = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Lodhva",
-                            DepartmentId = 1,
-                            Designation = "Software Developer",
-                            Email = "ravi123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Vadher Ravi",
-                            PhoneNumber = "8046192318",
-                            Salary = 40000m,
-                            YearsOfExperties = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Vadhvan",
-                            DepartmentId = 2,
-                            Designation = "Salse Executive",
-                            Email = "rakesh123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Rakesh Parmar",
-                            PhoneNumber = "8146192318",
-                            Salary = 30000m,
-                            YearsOfExperties = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Address = "Gondal",
-                            DepartmentId = 3,
-                            Designation = "Salse Executive",
-                            Email = "yashraj123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Yashraj Vaghela",
-                            PhoneNumber = "7746192318",
-                            Salary = 20000m,
-                            YearsOfExperties = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Address = "Rajkot",
-                            DepartmentId = 3,
-                            Designation = "Marketing Intern",
-                            Email = "akash123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Akash Pateliya",
-                            PhoneNumber = "7846192318",
-                            Salary = 5000m,
-                            YearsOfExperties = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Address = "Nadiyad",
-                            DepartmentId = 4,
-                            Designation = "QA Developer",
-                            Email = "mehul123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Mehul Prajapati",
-                            PhoneNumber = "8086192318",
-                            Salary = 40000m,
-                            YearsOfExperties = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Address = "Anand",
-                            DepartmentId = 5,
-                            Designation = "Accountent",
-                            Email = "sujal123@gmail.com",
-                            IsEnrolled = false,
-                            IsTrainer = false,
-                            Name = "Sujal Prajapati",
-                            PhoneNumber = "7946192318",
-                            Salary = 50000m,
-                            YearsOfExperties = 4
-                        });
                 });
 
             modelBuilder.Entity("CTMS.Repository.Entities.EnrolledEmployee", b =>
@@ -266,6 +127,9 @@ namespace CTMS.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

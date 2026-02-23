@@ -13,18 +13,6 @@ namespace CTMS.Repository.Repositories
             _Context = appDbContext;
         }
 
-        public void AddTrainerEmployee(TrainerEmployee trainerEmployee)
-        {
-            _Context.TrainerEmployees.Add(trainerEmployee);
-
-        }
-
-        public TrainerEmployee? GetTrainerEmployee(int Id)
-        {
-            var trainerEmployee = _Context.TrainerEmployees.Include(x=>x.Employee).FirstOrDefault(x => x.Id == Id);
-            return trainerEmployee;
-        }
-
         public List<TrainerEmployee> GetAllTrainerEmployee()
         {
             var ListOfTrainerEmployee = _Context.TrainerEmployees.Include(x => x.Employee).ToList();

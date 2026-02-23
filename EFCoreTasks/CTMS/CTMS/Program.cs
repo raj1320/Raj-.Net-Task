@@ -6,7 +6,7 @@ using CTMS.Services;
 
 
 int choice = 0;
-while (choice!=14)
+while (choice!=13)
 {
     Console.WriteLine("Enter 1 for Add Employee");
     Console.WriteLine("Enter 2 for Add Department");
@@ -15,12 +15,12 @@ while (choice!=14)
     Console.WriteLine("Enter 5 For Enrolle Employee To Training Program");
     Console.WriteLine("Enter 6 for Update The Score Of Enrolled Employee");
     Console.WriteLine("Enter 7 for Delete Training Program");
-    Console.WriteLine("Enter 8 for See the TrainingDepartment Details");
-    Console.WriteLine("Enter 9 for See the Department Statestics");
-    Console.WriteLine("Enter 10 for Delete Department");
-    Console.WriteLine("Enter 11 for See the Employees");
-    Console.WriteLine("Enter 12 for Delete Employee");
-    Console.WriteLine("Enter 13 for see the Training Program");
+    Console.WriteLine("Enter 8 for See the Department Statestics");
+    Console.WriteLine("Enter 9 for Delete Department");
+    Console.WriteLine("Enter 10 for See the Employees");
+    Console.WriteLine("Enter 11 for Delete Employee");
+    Console.WriteLine("Enter 12 for see the Training Program");
+    Console.WriteLine("Enter 13 for Exit");
    GeneralService.FetchUserInputGeneric(ref choice, " Enter The Choice");
     switch (choice)
     {
@@ -36,7 +36,7 @@ while (choice!=14)
             }
         case 3:
             {
-               TrainingProgramController.AddTrainingProgramController(); 
+               TrainingProgramController.AddTrainingProgramController();  
                 break;
             }
         case 4:
@@ -46,7 +46,7 @@ while (choice!=14)
             }
         case 5:
             {
-               EnrolledEmployeeContoller.EnrollEmployeeToTrainingProgramController();  
+               EnrolledEmployeeContoller.EnrollEmployeeToTrainingProgramController();   
                 break;
             }
         case 6:
@@ -59,37 +59,32 @@ while (choice!=14)
                 TrainingProgramController.DeleteTrainingProgramController();  
                 break;
             }
-        case 8:
-            {
-               DepartmentController.ShowTrainingDepartmentDetailsController(); 
-                break;
-            }
-        case 9: 
+        case 8: 
             {
               DepartmentController.ShowDepartmentStatesticController(); 
                 break;
             }
-        case 10:
+        case 9:
             {
                 DepartmentController.DeleteDepartmentController(); 
                 break;
             }
-        case 11:
+        case 10:
             {
                 EmployeeController.ShowEmployeesController(); 
                 break;
             }
-        case 12:
+        case 11:
             {
                 EmployeeController.DeleteEmployeeContoller();
                 break;
             }
-        case 13:
+        case 12:
             {
                TrainingProgramController.ShowTrainingProgramController();
                 break;
             }
-        case 14:
+        case 13:
             {
                 Console.WriteLine("Thankyou for Review..");
                 break;

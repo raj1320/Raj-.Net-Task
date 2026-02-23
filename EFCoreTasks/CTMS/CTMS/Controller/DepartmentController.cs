@@ -1,5 +1,6 @@
 ﻿
 using CTMS.Repository.Data;
+using CTMS.Repository.Entities;
 using CTMS.Repository.Repositories;
 using CTMS.Services;
 
@@ -17,23 +18,22 @@ namespace CTMS.Controller
             }
         }
 
+        
+
         public static void ShowDepartmentStatesticController()
         {
             using (AppDbContext appDbContext = new AppDbContext())
             {
                 DepartmentRepository departmentRepository = new DepartmentRepository(appDbContext);
-                var ListOfDepartments = departmentRepository.GetAllDepartment();
-                DepartmentService.ShowDepartStateDepartmentService(ListOfDepartments);
-            }
-        }
-
-        public static void ShowTrainingDepartmentDetailsController()
-        {
-            using (AppDbContext appDbContext = new AppDbContext())
-            {
-                DepartmentRepository departmentRepository = new DepartmentRepository(appDbContext);
-                var ListOfDepartments = departmentRepository.GetAllDepartment();
-               DepartmentService.ShowDepartStateDepartmentService(ListOfDepartments);
+                EmployeeRepository employeeRepository = new EmployeeRepository(appDbContext);
+                int departmentId = DepartmentService.FetchInputDepartmentIdService(departmentRepository.GetAllDepartment());
+                var department = departmentRepository.GetDepartment(departmentId);
+                if(department == null)
+                {
+                    Console.WriteLine("No Record Found");
+                    return;
+                }
+                DepartmentService.ShowDepartStateDepartmentService(department,employeeRepository.GetAllEmployee());
             }
         }
 
@@ -42,7 +42,7 @@ namespace CTMS.Controller
             using (AppDbContext appDbContext = new AppDbContext())
             {
                 DepartmentRepository departmentRepository = new DepartmentRepository(appDbContext);
-                int departmentId =DepartmentService.FetchInputDepartmentIdService();
+                int departmentId =DepartmentService.FetchInputDepartmentIdService(departmentRepository.GetAllDepartment());
                 departmentRepository.DeleteDepartment(departmentId);
             }
         }

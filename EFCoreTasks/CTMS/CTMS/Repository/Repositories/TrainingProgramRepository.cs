@@ -20,76 +20,80 @@ namespace CTMS.Repository.Repositories
             Console.WriteLine("Traininng Program Added Successfully...");
         }
 
+        public TrainingProgram? GetTrainingProgram(int Id)
+        {
+            var trainingProgram = _Context.TrainingPrograms.Include(x => x.EnrolledEmployees).ThenInclude(y => y.Employee).SingleOrDefault(x => x.Id == Id);
+            return trainingProgram;
+        }
+
         public List<TrainingProgram> GetAllTrainingProgram()
         {
             return _Context.TrainingPrograms.Include(x=>x.TrainerEmployees).ThenInclude(x=>x.Employee)
                                             .Include(x=>x.EnrolledEmployees).ThenInclude(x=>x.Employee).ToList();
         }
+       
         private void ToggleTheflags(TrainingProgram trainingProgram, EnrolledEmployeeRepository enrolledEmployeeRepository, TrainerEmployeeRepository trainerEmployeeRepository)
         {
-            
+           
+            List<int> ENID = new List<int>();
+            List<int> TRID = new List<int>();
             if (trainingProgram != null)
             {
-                var listOfEnrolledEmployees = trainingProgram.EnrolledEmployees.ToList();
-                var listOfTrainerEmployees = trainingProgram.TrainerEmployees.ToList();
-
-                var OthertrainingProgram = _Context.TrainingPrograms.Include(x => x.TrainerEmployees).ThenInclude(x => x.Employee)
-                                                                     .Include(x => x.EnrolledEmployees).ThenInclude(x => x.Employee)
-                                                                     .Where(x => x.Id == trainingProgram.Id).ToList();
-
-                HashSet<int> TemployeeIdList = new HashSet<int>();
-                HashSet<int> EemployeeIdList = new HashSet<int>();
-
-                foreach (var trainerEmployee in OthertrainingProgram)
+                foreach (var employee in trainingProgram.EnrolledEmployees)
                 {
-                    foreach (var Employee in trainerEmployee.TrainerEmployees)
+                    if (employee.TrainingPrograms.Count() == 1)
                     {
-                        TemployeeIdList.Add(Employee.EmployeeId);
-
+                        employee.Employee.IsEnrolled = false;
+                        ENID.Add(employee.Id);
+                        _Context.SaveChanges();
                     }
+                    Console.WriteLine("Enrolled Employee Remove From Training Program");
+
                 }
-
-                foreach (var enrolledEmployee in OthertrainingProgram)
+                if (ENID.Count()>0)
                 {
-                    foreach (var Employee in enrolledEmployee.EnrolledEmployees)
+                    for (int i = 0; i < ENID.Count(); i++)
                     {
-                        EemployeeIdList.Add(Employee.EmployeeId);
-
-                    }
-                }
-
-                foreach (var item in listOfEnrolledEmployees)
-                {
-                    if (!EemployeeIdList.Contains(item.EmployeeId))
-                    {
-                        item.Employee.IsEnrolled = false;
-                        enrolledEmployeeRepository.DeleteEnrolledEmployee(item.Id);
+                        enrolledEmployeeRepository.DeleteEnrolledEmployee(ENID[i]);
                         _Context.SaveChanges();
                     }
                 }
 
-                foreach (var item in listOfTrainerEmployees)
+                foreach (var employee in trainingProgram.TrainerEmployees)
                 {
-                    if (!TemployeeIdList.Contains(item.EmployeeId))
+                    if (employee.TrainingPrograms.Count() == 1)
                     {
-                        item.Employee.IsTrainer = false;
-                        trainerEmployeeRepository.DeleteTrainerEmployee(item.Id);
+                        employee.Employee.IsTrainer = false;
+                        TRID.Add(employee.Id);
+                        _Context.SaveChanges();
+                    }
+                    Console.WriteLine("Trainer Employee Remove From Training Program");
+                }
+
+                if (TRID.Count()>0)
+                {
+                    for(int i = 0; i < TRID.Count(); i++)
+                    {
+                        trainerEmployeeRepository.DeleteTrainerEmployee(TRID[i]);
                         _Context.SaveChanges();
                     }
                 }
-
             }
 
-        }
-    
+        }    
+        
         public void DeleteTrainingProgram(int Id,EnrolledEmployeeRepository enrolledEmployeeRepository,TrainerEmployeeRepository trainerEmployeeRepository)
         {
             var trainingProgram = _Context.TrainingPrograms.Include(x => x.TrainerEmployees).ThenInclude(x => x.Employee)
-                                                           .Include(x => x.EnrolledEmployees).ThenInclude(x => x.Employee)
+                                                           .Include(x => x.EnrolledEmployees).ThenInclude(x => x.Employee).Include(x=>x.Scores)
                                                            .FirstOrDefault(x => x.Id == Id);
+
+
 
             if (trainingProgram != null)
             {
+               trainingProgram.Scores.RemoveAll(x=>x.trainingProgram.Id==trainingProgram.Id);
+                
                 ToggleTheflags(trainingProgram,enrolledEmployeeRepository,trainerEmployeeRepository);
                 _Context.TrainingPrograms.Remove(trainingProgram);
                 _Context.SaveChanges();

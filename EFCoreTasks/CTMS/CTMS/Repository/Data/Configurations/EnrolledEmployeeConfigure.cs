@@ -13,8 +13,6 @@ namespace CTMS.Repository.Data.Configurations
             builder.ToTable("EnrolledEmployees");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Score)
-                .IsRequired(true);
 
             builder.Property(x => x.EmployeeId)
                 .IsRequired(true);
@@ -33,6 +31,11 @@ namespace CTMS.Repository.Data.Configurations
             builder.HasMany(t=>t.TrainingPrograms)
                 .WithMany(t=>t.EnrolledEmployees)
                 .UsingEntity(j => j.ToTable("EnrolledEmployee_IN_TrainingPrograms"));
+
+
+            builder.HasMany(x => x.Scores)
+                .WithOne(x => x.enrolledEmployee)
+                .HasForeignKey(x => x.EnrolledEmployeeId);
 
 
             

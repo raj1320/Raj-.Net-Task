@@ -15,7 +15,9 @@ namespace CTMS.Repository.Repositories
 
         public void AddEnrolledEmployee(EnrolledEmployee enrolledEmployee)
         {
+             
                 _Context.EnrolledEmployees.Add(enrolledEmployee);
+            enrolledEmployee.Employee.IsEnrolled = true;
                 _Context.SaveChanges();
                 Console.WriteLine("Employee Enrolled Successfully..."); 
         }
@@ -32,29 +34,27 @@ namespace CTMS.Repository.Repositories
             return listOfEnrolledEmployee;
         }
         
-        public void AddTrainingProgrm(int Id,TrainingProgram trainingProgram)
+         
+        public void UpdateEnrolledEmployeeScore(int TPID,int ENID,int Score)
         {
-            var enrolledEmployee = GetEnrolledEmployee(Id);
-            if (enrolledEmployee != null)
+
+
+
+            var enrolledemp= GetEnrolledEmployee(ENID);
+            if (enrolledemp!=null)
             {
-                enrolledEmployee.TrainingPrograms.Add(trainingProgram);
-               _Context.SaveChanges();
+               Score?score=  _Context.Scores.SingleOrDefault(x=>x.TrainingProgramId==TPID && x.EnrolledEmployeeId==ENID);
+                if (score != null)
+                {
+                    score.ScoreValue = Score < 100 ? Score : score.ScoreValue;
+                    _Context.SaveChanges();
+                    Console.WriteLine("Score Updated Successfully...");
+                    return;
+                }
             }
-        }
-        
-        public void UpdateEnrolledEmployeeScore(int Id ,int Score)
-        {
-            var enrolledEmployee = _Context.EnrolledEmployees.FirstOrDefault(x => x.Id == Id);
-            if (enrolledEmployee != null)
-            {
-                enrolledEmployee.Score = Score;
-                _Context.SaveChanges();
-                Console.WriteLine("Score Updated Successfully..");
-            }
-            else
-            {
-                Console.WriteLine("No Record Found..");
-            }
+
+            Console.WriteLine("No Update...");
+       
                 
         }
         

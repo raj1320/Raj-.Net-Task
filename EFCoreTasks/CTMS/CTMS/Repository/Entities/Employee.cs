@@ -19,5 +19,7 @@ namespace CTMS.Repository.Entities
 
         public TrainerEmployee TrainerEmployee { get; set; }=null!;
         public EnrolledEmployee EnrolledEmployee { get; set; }=null!;
+
+
     }
 }

@@ -14,13 +14,15 @@ namespace CTMS.Controller
             {
                 TrainingProgramRepository trainingProgramRepository = new TrainingProgramRepository(appDbContext);
                 TrainerEmployeeRepository trainerEmployeeRepository = new TrainerEmployeeRepository(appDbContext);
-                TrainingProgram trainingProgram = TrainingProgramService.FetchInputForTrainingProgramService();
-                
-                EmployeeRepository employeeRepository = new EmployeeRepository(appDbContext);
-                List<TrainerEmployee> trainerList =TrainerEmployeeService.FetchInputForListOfTrainerService(trainingProgram, trainerEmployeeRepository, employeeRepository.GetAllEmployee()); 
-
-                trainingProgram.TrainerEmployees= trainerList;
+                TrainingProgram?trainingProgram = TrainingProgramService.FetchInputForTrainingProgramService(trainingProgramRepository.GetAllTrainingProgram());
+                if (trainingProgram == null) 
+                {
+                    return;
+                }
                 trainingProgramRepository.AddTrainingProgram(trainingProgram);
+                EmployeeRepository employeeRepository = new EmployeeRepository(appDbContext);
+                TrainerEmployeeService.FetchInputForListOfTrainerService(appDbContext, trainingProgram, trainerEmployeeRepository, employeeRepository.GetAllEmployee()); 
+
             };
 
         }

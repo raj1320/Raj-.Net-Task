@@ -1,4 +1,5 @@
 ﻿
+using CTMS.Repository.Data;
 using CTMS.Repository.Entities;
 using CTMS.Repository.Repositories;
 
@@ -6,61 +7,75 @@ namespace CTMS.Services
 {
     public class TrainerEmployeeService
     {
-        public static List<TrainerEmployee> FetchInputForListOfTrainerService(TrainingProgram trainingProgram,TrainerEmployeeRepository trainerEmployeeRepository,List<Employee> employees)
+        public static void FetchInputForListOfTrainerService(AppDbContext appDbContext,TrainingProgram trainingProgram,TrainerEmployeeRepository trainerEmployeeRepository,List<Employee> employees)
         {
-            string? Input;
-            int size = employees.Count();
-            List<Employee> ListOfEmployee=new List<Employee>();
-            List<TrainerEmployee> trainerEmployees = new List<TrainerEmployee>();
-            while (true)
+
+            string choice = "Y";
+           
+            while(choice!="N" && choice != "n")
             {
-                int count = 1;
+                int flag = 0;
                 Console.WriteLine("\nHere is the list of Employee");
                 foreach (Employee employee in employees)
                 {
-                    Console.WriteLine($"{count++}) Name : {employee.Name} , Designation : {employee.Designation} , Years of Experience :{employee.YearsOfExperties} ");
+                    Console.WriteLine($"ID :{employee.Id}) Name : {employee.Name} , Designation : {employee.Designation} , Years of Experience :{employee.YearsOfExperties} ");
                 }
-                Console.WriteLine("Enter 1,2,3... for select Employee As a Trainer...");
-                Input = Console.ReadLine();
-                if (Input != null)
+                Console.WriteLine("Select Trainer Id ...");
+                int Id = int.Parse(Console.ReadLine() ?? "0");
+
+                var TTPList = trainingProgram.TrainerEmployees.ToList();
+
+                foreach (var item in TTPList)
                 {
-                    try
+
+                    if (item.EmployeeId == Id)
                     {
-                        var listOfChoice = Input.Trim().Split(',');
-                        foreach (string choice in listOfChoice)
-                        {
-                            int idx = int.Parse(choice) - 1;
-                            if (idx > 0 && idx <= size && employees[idx] != null)
-                            {
-                                ListOfEmployee.Add(employees[idx]);
-                            }
-                            else
-                            {
-                                Console.WriteLine("\nEnter Valid Input...");
-                            }
-                        }
+                        Console.WriteLine("\nTrainer Already Present in Program..\n");
+                        flag = 1;
+                        Console.WriteLine("Do you Want to Add more Trainer");
+                        choice = Console.ReadLine() ?? "Y";
                         break;
                     }
-                    catch (FormatException ex)
+
+                }
+
+               if(flag != 1)
+                {
+                    foreach (var item in trainerEmployeeRepository.GetAllTrainerEmployee())
                     {
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine("\nEnter Valid Input...");
+                        if (item.EmployeeId == Id)
+                        {
+                            item.TrainingPrograms.Add(trainingProgram);
+                            trainingProgram.TrainerEmployees.Add(item);
+                            appDbContext.SaveChanges();
+                            Console.WriteLine("\nTrainer added Successfully...\n");
+                            flag = 1;
+                            Console.WriteLine("Do you Want to Add more Trainer");
+                            choice = Console.ReadLine() ?? "Y";
+                            break;
+                        }
 
                     }
+                }
 
+                if (flag != 1)
+                {
+                    TrainerEmployee trainerEmployee = new TrainerEmployee();
+                    trainerEmployee.EmployeeId = Id;
+                    trainerEmployee.TrainingPrograms.Add(trainingProgram);
+                    appDbContext.TrainerEmployees.Add(trainerEmployee);
+                    appDbContext.SaveChanges();
+                    trainingProgram.TrainerEmployees.Add(trainerEmployee);
+                    trainerEmployee.Employee.IsTrainer = true;
+                    appDbContext.SaveChanges();
+
+                    Console.WriteLine("\nTrainer Added Successfully...\n");
+                    Console.WriteLine("Do you Want to Add more Trainer");
+                    choice = Console.ReadLine() ?? "Y";
                 }
             }
 
-            foreach (Employee employee in employees)
-            {
-                TrainerEmployee trainerEmployee = new TrainerEmployee();
-                employee.IsTrainer = true;
-                trainerEmployee.EmployeeId = employee.Id;
-                trainerEmployee.TrainingPrograms.Add(trainingProgram);
-                trainerEmployeeRepository.AddTrainerEmployee(trainerEmployee);
-            }
-
-            return trainerEmployees;
+            
         }
     }
 }

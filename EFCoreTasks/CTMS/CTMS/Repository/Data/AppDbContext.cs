@@ -10,6 +10,8 @@ namespace CTMS.Repository.Data
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=CTMS;Trusted_Connection=True;TrustServerCertificate=True");
 
+
+
         }
 
 
@@ -20,6 +22,8 @@ namespace CTMS.Repository.Data
             modelBuilder.ApplyConfiguration(new TrainerEmployeeConfigure());
             modelBuilder.ApplyConfiguration(new EnrolledEmployeeConfigure());
             modelBuilder.ApplyConfiguration(new TrainingProgramConfigure());
+
+            
         }
 
        public DbSet<Employee> Employees { get; set; } 
@@ -27,6 +31,7 @@ namespace CTMS.Repository.Data
        public DbSet<TrainerEmployee> TrainerEmployees { get; set; } 
        public DbSet<EnrolledEmployee> EnrolledEmployees { get; set; } 
        public DbSet<TrainingProgram> TrainingPrograms  { get; set; } 
+       public DbSet<Score> Scores  { get; set; } 
 
     }
 }

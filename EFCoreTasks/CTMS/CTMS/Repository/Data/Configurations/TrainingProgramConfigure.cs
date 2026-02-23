@@ -22,8 +22,10 @@ namespace CTMS.Repository.Data.Configurations
 
             builder.Property(x=>x.StartDate)
                 .IsRequired(true);
-                
 
+            builder.HasMany(x => x.Scores)
+                .WithOne(x => x.trainingProgram)
+                .HasForeignKey(x => x.TrainingProgramId);
         }
     }
 }

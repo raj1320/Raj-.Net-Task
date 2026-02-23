@@ -40,23 +40,7 @@ namespace CTMS.Repository.Repositories
             {
                 employee.Salary = Salary;
                 _Context.SaveChanges();
-                Console.WriteLine("Employee Updated Successfully...");
-            }
-            else
-            {
-                Console.WriteLine("Employee is Not Found");
-            }
-            
-        }
-
-        public void UpdateEmployeeDepartmentId(int Id,int DeptId)
-        {
-            var employee = GetEmployee(Id);
-            if (employee != null)
-            {
-                employee.DepartmentId = DeptId;
-                _Context.SaveChanges();
-                Console.WriteLine("Employee Department is Updated Successfully..");
+                Console.WriteLine("Employee Salary Updated Successfully...");
             }
             else
             {

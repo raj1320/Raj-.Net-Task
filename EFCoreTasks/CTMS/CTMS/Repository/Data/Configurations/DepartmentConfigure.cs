@@ -33,6 +33,14 @@ namespace CTMS.Repository.Data.Configurations
                    .OnDelete(DeleteBehavior.Cascade);
 
 
+
+            builder.HasData(
+                new Department { Id = 1, Name = "IT", DateOfEstablishment = new DateTime(2021, 1, 1), Description = "Produce Valuable Software", Location = "3rd-floor" },
+                new Department { Id = 2, Name = "Salse", DateOfEstablishment = new DateTime(2021, 3, 1), Description = "Produce Valuable Software", Location = "3rd-floor" },
+                new Department { Id = 3, Name = "Marketing", DateOfEstablishment = new DateTime(2022, 1, 1), Description = "Produce Valuable Software", Location = "3rd-floor" },
+                new Department { Id = 4, Name = "QA", DateOfEstablishment = new DateTime(2023, 1, 1), Description = "Produce Valuable Software", Location = "3rd-floor" },
+                new Department { Id = 5, Name = "Finance", DateOfEstablishment = new DateTime(2021, 1, 1), Description = "Produce Valuable Software", Location = "3rd-floor" }
+              );
         }
     }
 }
