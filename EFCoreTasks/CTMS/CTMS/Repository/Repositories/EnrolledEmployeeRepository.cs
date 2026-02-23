@@ -46,7 +46,7 @@ namespace CTMS.Repository.Repositories
                Score?score=  _Context.Scores.SingleOrDefault(x=>x.TrainingProgramId==TPID && x.EnrolledEmployeeId==ENID);
                 if (score != null)
                 {
-                    score.ScoreValue = Score < 100 ? Score : score.ScoreValue;
+                    score.ScoreValue = Score < 100 && Score >=0 ? Score : score.ScoreValue;
                     _Context.SaveChanges();
                     Console.WriteLine("Score Updated Successfully...");
                     return;

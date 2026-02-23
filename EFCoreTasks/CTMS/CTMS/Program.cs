@@ -21,7 +21,7 @@ while (choice!=13)
     Console.WriteLine("Enter 11 for Delete Employee");
     Console.WriteLine("Enter 12 for see the Training Program");
     Console.WriteLine("Enter 13 for Exit");
-   GeneralService.FetchUserInputGeneric(ref choice, " Enter The Choice");
+   GeneralService.FetchUserInputGeneric(ref choice, "Enter The Choice");
     switch (choice)
     {
         case 1:
