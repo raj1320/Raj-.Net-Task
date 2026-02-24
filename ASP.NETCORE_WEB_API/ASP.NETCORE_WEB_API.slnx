@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ASP.NETCORE_WEB_API_Project1/ASP.NETCORE_WEB_API_Project1.csproj" />
+  <Project Path="DILifeCycleProject/DILifeCycleProject.csproj" Id="a7b55774-e153-4b78-b62d-b089d22b7e69" />
+</Solution>
