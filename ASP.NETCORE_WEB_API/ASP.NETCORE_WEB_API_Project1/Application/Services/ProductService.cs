@@ -1,41 +1,72 @@
-﻿using ASP.NETCORE_WEB_API_Project1.Domain.Entities;
+﻿using ASP.NETCORE_WEB_API_Project1.Application.DTOs;
+using ASP.NETCORE_WEB_API_Project1.Application.Interface;
+using ASP.NETCORE_WEB_API_Project1.Domain.Entities;
 using ASP.NETCORE_WEB_API_Project1.Domain.Enums;
+using ASP.NETCORE_WEB_API_Project1.Domain.Interfaces;
 using ASP.NETCORE_WEB_API_Project1.Infrastructure.Repositories;
+using AutoMapper;
 
 namespace ASP.NETCORE_WEB_API_Project1.Application.Services
 {
-    public class ProductService 
-    {
-        private readonly ProductRepository _productRepository;
-        public ProductService(ProductRepository productRepository)
+    public class ProductService : IProductService
+    {   
+        private readonly IMapper _mapper;
+
+        private readonly IProductRepository _productRepository;
+        public ProductService(IProductRepository productRepository,IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
-        public Product? AddProductService(Product product)
+        public ProductCreateDto? AddProductService(ProductCreateDto productDto)
         {
-            return _productRepository.AddProduct(product);
+            var product= _mapper.Map<Product>(productDto);
+            var resposnce =_productRepository.AddProduct(product);
+            var finalResultDTO = _mapper.Map<ProductCreateDto>(resposnce);
+
+            return finalResultDTO;
         }
 
-        public Product? GetProductService(int id) 
+        public ProductShowDto? GetProductService(int id) 
         {
-            return _productRepository.GetProductById(id);
+            var product = _productRepository.GetProductById(id);
+            var finalResultDTO = _mapper.Map<ProductShowDto>(product);
+            
+            return finalResultDTO;
+
+
         }
 
-        public List<Product> GetCategoryService(Category category)
+        public List<ProductShowDto> GetCategoryService(Category category)
         {
-            return _productRepository.GetCategory(category);
+            var result = _productRepository.GetCategory(category);
+            var ListOfproductShowDtos = _mapper.Map<List<ProductShowDto>>(result);
+            return ListOfproductShowDtos;
         }
 
-        public IEnumerable<Product> GetProductsService()
+        public IEnumerable<ProductShowDto> GetProductsService()
         {
-            return _productRepository.GetProducts();
+            var result = _productRepository.GetProducts();
+            var ListOfproductShowDtos = _mapper.Map<List<ProductShowDto>>(result);
+            return ListOfproductShowDtos;
         }
 
-        public bool DeleteProductService(int id)
+        public ProductCreateDto? PutProductService(ProductCreateDto product, int id)
         {
-           
-            return _productRepository.DeleteProduct(id);
+            var resultProduct = _mapper.Map<Product>(product);
+            var resposnce = _productRepository.PutProduct(resultProduct,id);
+            var finalResultDTO = _mapper.Map<ProductCreateDto>(resposnce);
+
+            return finalResultDTO;
+        }
+
+        public DeleteProductDTO? DeleteProductService(int id)
+        {
+
+            var resut = _productRepository.DeleteProduct(id);
+
+            return _mapper.Map<DeleteProductDTO>(resut);
         }
 
     }

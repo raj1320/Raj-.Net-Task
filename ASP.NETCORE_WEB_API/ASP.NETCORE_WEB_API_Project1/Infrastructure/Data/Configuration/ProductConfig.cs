@@ -11,7 +11,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Infrastructure.Data.Configuration
             builder.ToTable("Products");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.IsAvailable)
-                .HasDefaultValue(false);
+                .HasDefaultValue(true);
 
             builder.Property(x => x.Name)
                 .IsRequired()
@@ -26,6 +26,13 @@ namespace ASP.NETCORE_WEB_API_Project1.Infrastructure.Data.Configuration
             builder.Property(x=>x.Category)
                 .IsRequired(true)
                 .HasMaxLength(50);
+
+            builder.Property(x=>x.VandorName)
+                .IsRequired(true)
+                .HasMaxLength(100);
+
+            builder.Property(x => x.Stock)
+               .IsRequired(true);
         }
     }
 }
