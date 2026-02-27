@@ -1,8 +1,7 @@
 ﻿using ASP.NETCORE_WEB_API_Project1.Application.DTOs;
 using ASP.NETCORE_WEB_API_Project1.Application.Interface;
-using ASP.NETCORE_WEB_API_Project1.Application.Services;
-using ASP.NETCORE_WEB_API_Project1.Domain.Entities;
 using ASP.NETCORE_WEB_API_Project1.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCORE_WEB_API_Project1.Controllers
@@ -17,7 +16,10 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
             _productService = productService;
         }
 
+        
         [HttpPost]
+        [Authorize(Roles = "Vendor")]
+        
         public IActionResult CreateProduct(ProductCreateDto productDto)
         {
             var result = _productService.AddProductService(productDto);
@@ -30,6 +32,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Customer,Vendor")]
         public IActionResult GetProduct(int id) 
         {
 
@@ -43,6 +46,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
 
         [HttpGet]
         [Route("category/{categoryName}")]
+        [Authorize(Roles = "Admin,User,Vendor")]
         public IActionResult GetProducts(Category categoryName) 
         {
             var result = _productService.GetCategoryService(categoryName);
@@ -54,6 +58,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Customer,Vendor")]
         public IActionResult GetProducts()
         {
             var result = _productService.GetProductsService();
@@ -67,6 +72,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = "Admin,Vendor")]
         public IActionResult PutProduct(ProductCreateDto productCreateDto,int id)
         {
             var result = _productService.PutProductService( productCreateDto,id);
@@ -79,6 +85,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteProduct(int id)
         {
             var result = _productService.DeleteProductService(id);
@@ -88,5 +95,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Controllers
             }
             return Ok(result);
         }
+
+        
     }
 }

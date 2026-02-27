@@ -14,6 +14,7 @@ namespace ASP.NETCORE_WEB_API_Project1.Infrastructure.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
 
        
 
