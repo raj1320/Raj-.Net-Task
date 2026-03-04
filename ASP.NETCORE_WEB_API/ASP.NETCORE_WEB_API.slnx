@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="ASP.NETCORE_WEB_API_Project1/ASP.NETCORE_WEB_API_Project1.csproj" />
   <Project Path="DILifeCycleProject/DILifeCycleProject.csproj" Id="a7b55774-e153-4b78-b62d-b089d22b7e69" />
+  <Project Path="EMS_Project/EMS_Project.csproj" Id="4a87033e-a881-4767-835d-8dd3d57330da" />
 </Solution>
